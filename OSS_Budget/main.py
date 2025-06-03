@@ -9,7 +9,8 @@ def main():
         print("1. 지출 추가")
         print("2. 지출 목록 보기")
         print("3. 총 지출 보기")
-        print("4. 종료")
+        print("4. 년도+월 별로 지출 보기")
+        print("5. 종료")
         choice = input("선택 > ")
 
         if choice == "1":
@@ -29,6 +30,15 @@ def main():
             budget.total_spent()
 
         elif choice == "4":
+            try:
+                year = int(input("연도 (예: 2025): "))
+                month = int(input("월 (1~12): "))
+            except ValueError:
+                print("연도와 월은 숫자로 입력해야 합니다.\n")
+                continue
+            budget.list_by_month(year, month)
+
+        elif choice == "5":
             print("가계부를 종료합니다.")
             break
 
