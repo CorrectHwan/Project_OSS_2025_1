@@ -24,4 +24,16 @@ class Budget:
         total = sum(e.amount for e in self.expenses)
         print(f"총 지출: {total}원\n")
 
-
+    def remove_expense(self):
+        if not self.expenses:
+            print("삭제할 지출이 없습니다.\n"); return
+        self.list_expenses()
+        try:
+            idx = int(input("삭제할 번호를 입력하세요: ")) - 1
+            if 0 <= idx < len(self.expenses):
+                removed = self.expenses.pop(idx)
+                print(f"지출 [{removed}] 가 삭제되었습니다.\n")
+            else:
+                print("잘못된 번호입니다.\n")
+        except ValueError:
+            print("유효한 숫자를 입력하세요.\n")
