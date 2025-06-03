@@ -24,4 +24,18 @@ class Budget:
         total = sum(e.amount for e in self.expenses)
         print(f"총 지출: {total}원\n")
 
+    def list_by_month(self, year, month):
+        filtered = []
+        for e in self.expenses:
+            d = datetime.date.fromisoformat(e.date)
+            if d.year == year and d.month == month:
+                filtered.append(e)
 
+        if not filtered:
+            print(f"{year}년 {month}월 지출이 없습니다.\n")
+            return
+
+        print(f"\n[{year}년 {month}월 지출 목록]")
+        for idx, e in enumerate(filtered, 1):
+            print(f"{idx}. {e}")
+        print()
